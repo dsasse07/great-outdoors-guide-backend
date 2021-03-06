@@ -22,6 +22,7 @@ class AuthorizeRequest
   
     def auth_token
       # Bearer 123.ddsf.3454
+
       headers['Authorization'].split.last if headers['Authorization']
     end
   
