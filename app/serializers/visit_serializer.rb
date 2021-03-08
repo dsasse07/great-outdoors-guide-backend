@@ -12,16 +12,26 @@ class VisitSerializer < ActiveModel::Serializer
   #   end
   # end
 
-  def images
-    byebug
-    return unless object.images.attachments
-    image_urls = object.images.map do |image| 
-      URI.join(
-        ActionController::Base.asset_host, 
-        rails_blob_path(image))
-    end
+  # def images
+  #   byebug
+  #   return unless object.images.attachments
+  #   image_urls = object.images.map do |image| 
+  #     URI.join(
+  #       ActionController::Base.asset_host, 
+  #       rails_blob_path(image))
+  #   end
   
-    image_urls
+  #   image_urls
+  # end
+
+  def images
+    Rails.application.routes.default_url_options[:port] = 3000
+    Rails.application.routes.default_url_options[:host] = 'localhost'
+    if object.images.attached?
+      {
+        url: rails_blob_url(object.images)
+      }
+    end
   end
 
 end
