@@ -8,4 +8,5 @@ Rails.application.routes.draw do
 
   post "/visits", to: 'visits#create'
   get "visits", to: 'visits#index'
+  get "visits/reviews", to: 'visits#reviews'
 end

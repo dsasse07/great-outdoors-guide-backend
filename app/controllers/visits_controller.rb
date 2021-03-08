@@ -10,6 +10,12 @@ class VisitsController < ApplicationController
         # @visit.images.attach(params[:images])
         render json: @visit
     end
+
+    def reviews
+        @visits = Visit.where(code: params[:code])
+        render json: @visits
+    end
+
     private
     def visit_params
         # params.permit(:review, :user_id, :code, :score, :journal)
