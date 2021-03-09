@@ -16,6 +16,22 @@ class VisitsController < ApplicationController
         render json: @visits
     end
 
+    def update
+        @visit= Visit.find(params[:id])
+        @visit.update(visit_params)
+        render json: @visit
+    end
+
+    def destroy
+        @visit= Visit.find(params[:id])
+        @visit.destroy
+    end
+
+    def destroy_image
+        image = ActiveStorage::Blob.find_signed(params[:signed_id])
+        image.purge
+    end
+
     private
     def visit_params
         # params.permit(:review, :user_id, :code, :score, :journal)
