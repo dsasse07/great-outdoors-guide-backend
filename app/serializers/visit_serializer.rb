@@ -6,14 +6,16 @@ class VisitSerializer < ActiveModel::Serializer
   # :id, :score, :review, :username, :created_at
 
   def images
+ 
     return unless object.images.attachments
     image_urls = object.images.map do |image| 
-      rails_blob_url(image)
+      # rails_blob_url(image)
+      url_for(image)
     end
   
     image_urls
   end
 
-
+  
 
 end
