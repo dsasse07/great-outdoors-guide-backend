@@ -12,3 +12,11 @@ User.create(
   first_name: "John",
   last_name: "Doe"
 )
+
+# Visit.create(
+#   review: "Cool Dude",
+#   journal: "Best Day Ever",
+#   code: "acad",
+#   score: 3,
+#   user_id: 1,
+# )
