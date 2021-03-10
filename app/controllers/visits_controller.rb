@@ -20,7 +20,7 @@ class VisitsController < ApplicationController
         @visit.update(visit_params)
         render json: @visit
     end
- 
+  
     def destroy
         @visit= Visit.find(params[:id])
         @visit.destroy
