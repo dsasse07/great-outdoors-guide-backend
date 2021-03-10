@@ -31,8 +31,13 @@ class UsersController < ApplicationController
 
   # PATCH /show
   def update
-    @current_user.update(firstName: params[:firstName], lastName: params[:lastName])
-    render json: @current_user
+    if @current_user.authenticate(params[:current_password])
+      @current_user.update(first_name: params[:firstName], last_name: params[:lastName])
+      @current_user.update(password: params[:new_password]) if params[:new_password]
+      render json: @current_user
+    else
+      render json: { errors: ["Current Password Incorrect"] }, status: :unauthorized
+    end
   end
 
   private

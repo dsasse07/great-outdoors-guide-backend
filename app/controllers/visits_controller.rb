@@ -1,4 +1,5 @@
 class VisitsController < ApplicationController
+    before_action :authenticate, only: [:show, :update, :create, :destroy,:destroy_image]
     def index
         @visits = Visit.all
         render json: @visits
