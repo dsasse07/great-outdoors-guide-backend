@@ -29,7 +29,7 @@ class VisitsController < ApplicationController
 
     def destroy_image
         image = ActiveStorage::Blob.find_signed(params[:signed_id])
-        image.purge
+        image.attachments.first.purge
     end
 
     private
