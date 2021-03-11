@@ -17,7 +17,10 @@ class VisitsController < ApplicationController
 
     def update
         @visit= Visit.find(params[:id])
-        @visit.update(visit_params)
+        @visit.update(update_params)
+
+        @visit.images.attach(params[:images]) if params[:images]
+
         render json: @visit
     end
   
@@ -34,5 +37,9 @@ class VisitsController < ApplicationController
     private
     def visit_params
         params.permit(:review, :user_id, :code, :score, :journal, images: [])
+    end
+
+    def update_params
+        params.permit(:review, :user_id, :code, :score, :journal)
     end
 end
