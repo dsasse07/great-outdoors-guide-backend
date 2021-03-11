@@ -10,7 +10,7 @@ class VisitSerializer < ActiveModel::Serializer
     return unless object.images.attachments
     image_urls = object.images.map do |image| 
       # rails_blob_url(image)
-      image = { url: url_for(image), signed_id: image.signed_id }
+      image = { url: rails_blob_url(image), signed_id: image.signed_id }
       images << image
     end
   
